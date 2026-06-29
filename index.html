@@ -3,77 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Miki's favourite person</title>
+    <title>Vegas — Miki's Favourite Person</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Floating hearts -->
     <div class="hearts" aria-hidden="true" id="hearts"></div>
 
     <div class="container">
       <header class="page-header">
         <span class="crown">👑</span>
-        <h1>Miki's favourite person</h1>
-        <p class="subtitle">yes, that's you 💕</p>
+        <h1>Vegas</h1>
+        <p class="subtitle">Miki's favourite person in the whole world 💕</p>
       </header>
 
       <div class="divider">♥ ♥ ♥</div>
 
       <nav class="tabs" role="tablist" aria-label="Form sections">
-        <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-question" id="tab-question">💬 Ask Me</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-admire" id="tab-admire">💌 Admire Me</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-appointment" id="tab-appointment">📅 Date Me</button>
+        <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-question" id="tab-question">💬 Ask Vegas</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-admire" id="tab-admire">💌 Secret Note</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-appointment" id="tab-appointment">📅 Book a Date</button>
       </nav>
 
       <!-- Question Panel -->
       <section class="panel active" id="panel-question" role="tabpanel" aria-labelledby="tab-question">
         <div class="panel-intro">🌹</div>
+        <div data-fs-success="question" style="display:none" class="fs-success">Vegas got your question! He'll get back to you 💬✨</div>
         <form id="form-question" novalidate>
+          <input type="hidden" name="form_type" value="Question for Vegas" />
           <label for="topic">Topic</label>
-          <select id="topic" required>
-            <option value="">-- Pick a topic, darling --</option>
-            <option value="general">General</option>
-            <option value="tech">Tech / Programming</option>
-            <option value="career">Career</option>
-            <option value="life">Life Advice</option>
-            <option value="fun">Just for Fun</option>
+          <select id="topic" name="topic" data-fs-field required>
+            <option value="">-- Pick a topic, Miki --</option>
+            <option value="General">General</option>
+            <option value="Tech / Programming">Tech / Programming</option>
+            <option value="Career">Career</option>
+            <option value="Life Advice">Life Advice</option>
+            <option value="Just for Fun">Just for Fun</option>
           </select>
+          <span class="fs-field-error" data-fs-error="topic"></span>
 
-          <label for="question-text">Your Question</label>
-          <textarea id="question-text" rows="4" placeholder="Ask me anything, I'm all ears... ✨" required></textarea>
+          <label for="question-text">Your Question for Vegas</label>
+          <textarea id="question-text" name="question" rows="4" placeholder="Ask Vegas anything, he's all ears... ✨" data-fs-field required></textarea>
+          <span class="fs-field-error" data-fs-error="question"></span>
 
-          <button type="submit" class="btn">Send Question 💬</button>
+          <button type="submit" class="btn" data-fs-submit-btn>Send to Vegas 💬</button>
         </form>
       </section>
 
       <!-- Admiration Panel -->
       <section class="panel" id="panel-admire" role="tabpanel" aria-labelledby="tab-admire" hidden>
         <div class="panel-intro">🥰</div>
+        <div data-fs-success="admire" style="display:none" class="fs-success">Your secret is safe with the universe 🤫💕</div>
         <form id="form-admire" novalidate>
-          <label for="admire-message">Your Secret Message</label>
-          <textarea id="admire-message" rows="5" placeholder="Tell me something sweet... I promise not to tell 🤫💕" required></textarea>
+          <input type="hidden" name="form_type" value="Secret Admiration for Vegas" />
+          <label for="admire-message">Your Secret Message to Vegas</label>
+          <textarea id="admire-message" name="message" rows="5" placeholder="Tell Vegas something sweet, Miki... he promises not to tell 🤫💕" data-fs-field required></textarea>
+          <span class="fs-field-error" data-fs-error="message"></span>
 
-          <button type="submit" class="btn">Whisper to Miki 💌</button>
+          <button type="submit" class="btn" data-fs-submit-btn>Whisper to Vegas 💌</button>
         </form>
       </section>
 
       <!-- Appointment Panel -->
       <section class="panel" id="panel-appointment" role="tabpanel" aria-labelledby="tab-appointment" hidden>
         <div class="panel-intro">✨</div>
+        <div data-fs-success="appointment" style="display:none" class="fs-success">It's a date! Vegas can't wait 💖📅</div>
         <form id="form-appointment" novalidate>
+          <input type="hidden" name="form_type" value="Date Booking for Vegas" />
           <label for="appt-date">Pick a Date</label>
-          <input type="date" id="appt-date" required />
+          <input type="date" id="appt-date" name="date" data-fs-field required />
+          <span class="fs-field-error" data-fs-error="date"></span>
 
           <label for="appt-time">What Time?</label>
-          <input type="time" id="appt-time" required />
+          <input type="time" id="appt-time" name="time" data-fs-field required />
+          <span class="fs-field-error" data-fs-error="time"></span>
 
-          <label for="appt-activity">What are we doing? 🌸</label>
-          <input type="text" id="appt-activity" placeholder="e.g. Coffee date, Stargazing, Movie night..." required />
+          <label for="appt-activity">What are you planning, Miki? 🌸</label>
+          <input type="text" id="appt-activity" name="activity" placeholder="e.g. Coffee date, Stargazing, Movie night..." data-fs-field required />
+          <span class="fs-field-error" data-fs-error="activity"></span>
 
-          <label for="appt-notes">Anything else to know?</label>
-          <textarea id="appt-notes" rows="3" placeholder="Dress code, bring snacks, or just say something cute..."></textarea>
+          <label for="appt-notes">Anything Vegas should know?</label>
+          <textarea id="appt-notes" name="notes" rows="3" placeholder="Dress code, bring snacks, or just say something cute..."></textarea>
 
-          <button type="submit" class="btn">Book Our Date 💖</button>
+          <button type="submit" class="btn" data-fs-submit-btn>Book Vegas 💖</button>
         </form>
       </section>
 
@@ -81,5 +92,14 @@
     </div>
 
     <script src="script.js"></script>
+
+    <!-- Formspree Ajax SDK -->
+    <script>
+      window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+      formspree('initForm', { formElement: '#form-question',    formId: 'mykqppwb' });
+      formspree('initForm', { formElement: '#form-admire',      formId: 'mykqppwb' });
+      formspree('initForm', { formElement: '#form-appointment', formId: 'mykqppwb' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   </body>
 </html>

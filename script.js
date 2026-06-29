@@ -22,7 +22,6 @@
     setTimeout(() => el.remove(), (duration + 4) * 1000);
   }
 
-  // Spawn hearts periodically
   for (let i = 0; i < 12; i++) spawnHeart();
   setInterval(spawnHeart, 1800);
 
@@ -31,10 +30,8 @@
     tab.addEventListener('click', () => {
       tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
       panels.forEach(p => { p.classList.remove('active'); p.hidden = true; });
-
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
-
       const panel = document.getElementById(tab.getAttribute('aria-controls'));
       panel.classList.add('active');
       panel.hidden = false;
@@ -48,41 +45,19 @@
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
-  // Question form
-  document.getElementById('form-question').addEventListener('submit', e => {
-    e.preventDefault();
-    const topic = document.getElementById('topic').value;
-    const question = document.getElementById('question-text').value.trim();
-    if (!topic || !question) return;
+  // Show toast on Formspree success by watching [data-fs-success] visibility
+  const successMessages = {
+    question:    'Vegas got your question! 💬✨',
+    admire:      'Your secret is safe with the universe 🤫💕',
+    appointment: "It's a date! Vegas can't wait 💖📅",
+  };
 
-    console.log('Question submitted:', { topic, question });
-    showToast('Miki received your question 💬✨');
-    e.target.reset();
-  });
-
-  // Admiration form
-  document.getElementById('form-admire').addEventListener('submit', e => {
-    e.preventDefault();
-    const message = document.getElementById('admire-message').value.trim();
-    if (!message) return;
-
-    console.log('Secret admiration:', { message });
-    showToast('Your secret is safe with the universe 🤫💕');
-    e.target.reset();
-  });
-
-  // Appointment form
-  document.getElementById('form-appointment').addEventListener('submit', e => {
-    e.preventDefault();
-    const date = document.getElementById('appt-date').value;
-    const time = document.getElementById('appt-time').value;
-    const activity = document.getElementById('appt-activity').value.trim();
-    const notes = document.getElementById('appt-notes').value.trim();
-    if (!date || !time || !activity) return;
-
-    console.log('Appointment booked:', { date, time, activity, notes });
-    showToast("It's a date! Miki can't wait 💖📅");
-    e.target.reset();
+  Object.entries(successMessages).forEach(([key, msg]) => {
+    const el = document.querySelector(`[data-fs-success="${key}"]`);
+    if (!el) return;
+    new MutationObserver(() => {
+      if (el.style.display !== 'none') showToast(msg);
+    }).observe(el, { attributes: true, attributeFilter: ['style'] });
   });
 
   // Set min date to today
