@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miki's favourite person</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Floating hearts -->
+    <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+    <div class="container">
+      <header class="page-header">
+        <span class="crown">👑</span>
+        <h1>Miki's favourite person</h1>
+        <p class="subtitle">yes, that's you 💕</p>
+      </header>
+
+      <div class="divider">♥ ♥ ♥</div>
+
+      <nav class="tabs" role="tablist" aria-label="Form sections">
+        <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-question" id="tab-question">💬 Ask Me</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-admire" id="tab-admire">💌 Admire Me</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-appointment" id="tab-appointment">📅 Date Me</button>
+      </nav>
+
+      <!-- Question Panel -->
+      <section class="panel active" id="panel-question" role="tabpanel" aria-labelledby="tab-question">
+        <div class="panel-intro">🌹</div>
+        <form id="form-question" novalidate>
+          <label for="topic">Topic</label>
+          <select id="topic" required>
+            <option value="">-- Pick a topic, darling --</option>
+            <option value="general">General</option>
+            <option value="tech">Tech / Programming</option>
+            <option value="career">Career</option>
+            <option value="life">Life Advice</option>
+            <option value="fun">Just for Fun</option>
+          </select>
+
+          <label for="question-text">Your Question</label>
+          <textarea id="question-text" rows="4" placeholder="Ask me anything, I'm all ears... ✨" required></textarea>
+
+          <button type="submit" class="btn">Send Question 💬</button>
+        </form>
+      </section>
+
+      <!-- Admiration Panel -->
+      <section class="panel" id="panel-admire" role="tabpanel" aria-labelledby="tab-admire" hidden>
+        <div class="panel-intro">🥰</div>
+        <form id="form-admire" novalidate>
+          <label for="admire-message">Your Secret Message</label>
+          <textarea id="admire-message" rows="5" placeholder="Tell me something sweet... I promise not to tell 🤫💕" required></textarea>
+
+          <button type="submit" class="btn">Whisper to Miki 💌</button>
+        </form>
+      </section>
+
+      <!-- Appointment Panel -->
+      <section class="panel" id="panel-appointment" role="tabpanel" aria-labelledby="tab-appointment" hidden>
+        <div class="panel-intro">✨</div>
+        <form id="form-appointment" novalidate>
+          <label for="appt-date">Pick a Date</label>
+          <input type="date" id="appt-date" required />
+
+          <label for="appt-time">What Time?</label>
+          <input type="time" id="appt-time" required />
+
+          <label for="appt-activity">What are we doing? 🌸</label>
+          <input type="text" id="appt-activity" placeholder="e.g. Coffee date, Stargazing, Movie night..." required />
+
+          <label for="appt-notes">Anything else to know?</label>
+          <textarea id="appt-notes" rows="3" placeholder="Dress code, bring snacks, or just say something cute..."></textarea>
+
+          <button type="submit" class="btn">Book Our Date 💖</button>
+        </form>
+      </section>
+
+      <div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
